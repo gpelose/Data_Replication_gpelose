@@ -1,0 +1,26 @@
+---
+title: "Data_Replication_gpelose_Workbook1"
+author: "Greg Pelose"
+date: "12/6/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Getting data from excel into R
+```{r}
+install.packages("readxl")
+```
+```{r}
+library(readxl)
+```
+
+Excell files. How do I bring each specific one into the document
+
+```{r}
+
+```
+
+
