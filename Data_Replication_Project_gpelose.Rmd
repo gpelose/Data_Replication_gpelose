@@ -17,10 +17,76 @@ install.packages("readxl")
 library(readxl)
 ```
 
-Excell files. How do I bring each specific one into the document
+
+Figure 1
 
 ```{r}
+library(readxl)
+library(ggplot2)
+library(dplyr)
+```
 
+```{r}
+Figure_1 <- read_excel("individual_project.xlsx", 
+    sheet = "GP-Fig.1")
+summary(Figure_1)
+```
+
+First I want to check and see if this checks out, then I will use ggplot to mimic the graph that they created
+
+```{r}
+boxplot(Figure_1, xlab="Plastic Type", ylab="no. plastic per polyp")
+```
+
+Questions about figure 1:
+I cannot figure out how to get the A, A, B above the image
+I cannot figure out how to change the values of the y-axis
+
+Attempting to create in ggplot
+```{r}
+Plot_1 <-ggplot(Figure_1, aes(x=Figure_1$beads, Figure_1$fibers, Figure_1$Misc, y="no. Plastic per polyp"))
+
+
+```
+
+Questioins:
+How do I make this work
+
+FIgure 2
+
+```{r}
+Figure_2 <- read_excel("individual_project.xlsx", 
+    sheet = "GP-Fig.2")
+summary(Figure_2)
+hist(Figure_2)
+```
+
+
+```{r}
+plot_2 <- ggplot(Figure_2, aes(x=top, middle, bottom, y=))
+plot_2
+```
+
+
+#Figure 3
+
+```{r}
+Figure_3 <- read_excel("individual_project.xlsx", 
+     sheet = "GP-Fig.3")
+summary(Figure_3)
+boxplot(Figure_3, ylab="particles consumed (mm^3)")
+```
+
+
+
+
+Figure 5
+
+```{r}
+Figure_5 <- read_excel("individual_project.xlsx", 
+    sheet = "GP-Fig.5")
+summary(Figure_5)
+plot(Figure_5)
 ```
 
 
