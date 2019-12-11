@@ -9,6 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+
 Getting data from excel into R
 ```{r}
 install.packages("readxl")
@@ -44,7 +45,7 @@ I cannot figure out how to change the values of the y-axis
 
 Attempting to create in ggplot
 ```{r}
-Plot_1 <-ggplot(Figure_1, aes(x=Figure_1$beads, Figure_1$fibers, Figure_1$Misc, y="no. Plastic per polyp"))
+Plot_1 <-ggplot(Figure_1, aes(x=Figure_1$beads, Figure_1$fibers, Figure_1$Misc, y=???????))
 
 
 ```
@@ -58,14 +59,27 @@ FIgure 2
 Figure_2 <- read_excel("individual_project.xlsx", 
     sheet = "GP-Fig.2")
 summary(Figure_2)
-hist(Figure_2)
+names(Figure_2)
 ```
-
+```{r}
+top <- Figure_2$Top 
+middle <- Figure_2$Middle
+Bottom <- Figure_2$Bottom
+top
+```
 
 ```{r}
-plot_2 <- ggplot(Figure_2, aes(x=top, middle, bottom, y=))
-plot_2
+Sheet_2_Fig_2 <- read_excel("individual_project.xlsx", 
+    sheet = "sheet 2 again")
+summary("sheet 2 again")
+names("Sheet 2 again")
 ```
+
+```{r}
+Plot_2 <- ggplot(Figure_2, aes(x=top, y=))
+plot_2 + geom_bar()
+```
+
 
 
 #Figure 3
@@ -78,9 +92,14 @@ boxplot(Figure_3, ylab="particles consumed (mm^3)")
 ```
 
 
+#Figure 4
 
 
-Figure 5
+
+
+
+
+#Figure 5
 
 ```{r}
 Figure_5 <- read_excel("individual_project.xlsx", 
