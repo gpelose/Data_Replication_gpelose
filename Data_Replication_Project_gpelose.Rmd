@@ -13,23 +13,21 @@ knitr::opts_chunk$set(echo = TRUE)
 ##Backgroung Informaiton
   
 
-Getting data from excel into R
+##Getting data from excel into R
 ```{r}
 install.packages("readxl")
 ```
 ```{r}
 library(readxl)
-```
-
-
-Figure 1
-
-```{r}
 library(readxl)
 library(ggplot2)
 library(dplyr)
 ```
 
+
+#Figure 1
+
+##To start, you need to pull in the data from R, 
 
 ```{r}
 Figure_1 <- read_excel("individual_project.xlsx", 
@@ -37,68 +35,40 @@ Figure_1 <- read_excel("individual_project.xlsx",
 summary(Figure_1)
 ```
 
+##Creating a plot in ggplot
 
 ```{r,fig.width=4,fig.height=4}
-ggplot(data=Figure_1,aes(x=MP_type,y=MP_count))+geom_boxplot()+xlab("Plastic Type")+ylab("no. plastics per polyp")+scale_y_continuous(lim=c(0,100),breaks=c(0,20,40,60,80,100))+theme_classic()+annotate("text", x = "Beads", y = 35, label = "A")+annotate("text", x = "Fibers", y = 100, label = "B")+annotate("text", x = "Misc", y = 30, label = "A")
+ggplot(data=Figure_1,aes(x=MP_type,y=MP_count))+geom_boxplot()+xlab("Plastic Type")+ylab("no. plastics per polyp")+scale_y_continuous(lim=c(0,100),breaks=c(0,20,40,60,80,100))+theme_classic()+annotate("text", x = "Beads", y = 30, label = "A")+annotate("text", x = "Fibers", y = 92, label = "B")+annotate("text", x = "Misc", y = 22, label = "A")+theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-Questions about figure 1:
-I cannot figure out how to get the A, A, B above the image
-I cannot figure out how to change the values of the y-axis
-
-```{r}
-x_value <- "Figure_1$beads, Figure_1$fibers, Figure_1$Mis"
-```
+##Statistical Analysis
 
 
-Attempting to create in ggplot
-
-```{r}
-Plot_1 <-ggplot(Figure_1, aes(x= "x_value", y="Figure_1$Observations"))
-p <- Plot_1 + geom_boxplot()
-p
-```
-
-Questioins:
-How do I make this work
 
 #Figure 2
 
+##Pulling data in from excell 
 ```{r}
 Figure_2 <- read_excel("individual_project.xlsx", 
     sheet = "GP-Fig.2")
 summary(Figure_2)
 names(Figure_2)
 ```
-```{r}
-top <- Figure_2$Top 
-middle <- Figure_2$Middle
-Bottom <- Figure_2$Bottom
-top
-```
+
+##Using ggplot to create Figure 2
+
 
 ```{r}
 plot_2 <- ggplot(Figure_2, aes(x=colony,y=MP_ingested))
-plot_2 + geom_histogram(stat="identity",aes(fill=location))+theme_classic()+scale_fill_manual()
+plot_2 + geom_histogram(stat="identity",aes(fill=location))+annotate("text", x = 1, y = 100, label = "57.5%")+annotate("text", x = 2, y = 135, label = "74.7%")+annotate("text", x = 3, y = 19, label = "88.6%")+scale_y_continuous(lim=c(0,250),breaks=c(0,50,100,150,200,250))
 ```
 
+I was unable to move the legend to the top, I would do this in photo shop if I had access to the application.  
 
+I could change the colors to be black and white like they were in the graph but I actually downloaded the paper and the graphs contain colors and I like the colors as well so I am going to keep them!
 
-```{r}
-Sheet_2_Fig_2 <- read_excel("individual_project.xlsx", 
-    sheet = "sheet 2 again", col_types = c("numeric", 
-        "numeric", "numeric"))
-View(individual_project)
-summary("Sheet_2_Fig_2")
-names("Sheet_2_Fig_2")
-```
-
-
-```{r}
-Plot_2 <- ggplot(Figure_2, aes(x=, y=))
-plot_2 + geom_bar()
-```
-
+Question#
+How perfect does this have to be compared to the graph online? I can get rid of the lines in the background and change the color and I did that but I like the color better. 
 
 #Figure 3
 
