@@ -8,7 +8,10 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+#Introduction
 
+##Backgroung Informaiton
+  
 
 Getting data from excel into R
 ```{r}
@@ -27,33 +30,39 @@ library(ggplot2)
 library(dplyr)
 ```
 
+
 ```{r}
 Figure_1 <- read_excel("individual_project.xlsx", 
     sheet = "GP-Fig.1")
 summary(Figure_1)
 ```
 
-First I want to check and see if this checks out, then I will use ggplot to mimic the graph that they created
 
-```{r}
-boxplot(Figure_1, xlab="Plastic Type", ylab="no. plastic per polyp")
+```{r,fig.width=4,fig.height=4}
+ggplot(data=Figure_1,aes(x=MP_type,y=MP_count))+geom_boxplot()+xlab("Plastic Type")+ylab("no. plastics per polyp")+scale_y_continuous(lim=c(0,100),breaks=c(0,20,40,60,80,100))+theme_classic()+annotate("text", x = "Beads", y = 35, label = "A")+annotate("text", x = "Fibers", y = 100, label = "B")+annotate("text", x = "Misc", y = 30, label = "A")
 ```
 
 Questions about figure 1:
 I cannot figure out how to get the A, A, B above the image
 I cannot figure out how to change the values of the y-axis
 
-Attempting to create in ggplot
 ```{r}
-Plot_1 <-ggplot(Figure_1, aes(x=Figure_1$beads, Figure_1$fibers, Figure_1$Misc, y=???????))
+x_value <- "Figure_1$beads, Figure_1$fibers, Figure_1$Mis"
+```
 
 
+Attempting to create in ggplot
+
+```{r}
+Plot_1 <-ggplot(Figure_1, aes(x= "x_value", y="Figure_1$Observations"))
+p <- Plot_1 + geom_boxplot()
+p
 ```
 
 Questioins:
 How do I make this work
 
-FIgure 2
+#Figure 2
 
 ```{r}
 Figure_2 <- read_excel("individual_project.xlsx", 
@@ -69,17 +78,26 @@ top
 ```
 
 ```{r}
-Sheet_2_Fig_2 <- read_excel("individual_project.xlsx", 
-    sheet = "sheet 2 again")
-summary("sheet 2 again")
-names("Sheet 2 again")
+plot_2 <- ggplot(Figure_2, aes(x=colony,y=MP_ingested))
+plot_2 + geom_histogram(stat="identity",aes(fill=location))+theme_classic()+scale_fill_manual()
 ```
+
+
 
 ```{r}
-Plot_2 <- ggplot(Figure_2, aes(x=top, y=))
-plot_2 + geom_bar()
+Sheet_2_Fig_2 <- read_excel("individual_project.xlsx", 
+    sheet = "sheet 2 again", col_types = c("numeric", 
+        "numeric", "numeric"))
+View(individual_project)
+summary("Sheet_2_Fig_2")
+names("Sheet_2_Fig_2")
 ```
 
+
+```{r}
+Plot_2 <- ggplot(Figure_2, aes(x=, y=))
+plot_2 + geom_bar()
+```
 
 
 #Figure 3
