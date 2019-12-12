@@ -58,7 +58,7 @@ names(Figure_2)
 ##Using ggplot to create Figure 2
 
 
-```{r}
+```{r, fig.width=4,fig.height=4}
 plot_2 <- ggplot(Figure_2, aes(x=colony,y=MP_ingested))
 plot_2 + geom_histogram(stat="identity",aes(fill=location))+annotate("text", x = 1, y = 100, label = "57.5%")+annotate("text", x = 2, y = 135, label = "74.7%")+annotate("text", x = 3, y = 19, label = "88.6%")+scale_y_continuous(lim=c(0,250),breaks=c(0,50,100,150,200,250))
 ```
@@ -72,15 +72,27 @@ How perfect does this have to be compared to the graph online? I can get rid of 
 
 #Figure 3
 
-```{r}
+```{r, fig.width=4,fig.height=4}
 Figure_3 <- read_excel("individual_project.xlsx", 
      sheet = "GP-Fig.3")
 summary(Figure_3)
 boxplot(Figure_3, ylab="particles consumed (mm^3)")
 ```
+I wanted to try and create this graph using the graphing system portrayed by R and I was able to. 
 
 
-#Figure 4
+#Figure 4 Plot 1!
+
+```{r}
+Fig.4_plot.1 <- read_excel("individual_project.xlsx", 
+    sheet = "GP-Fig.4")
+summary(Fig.4_plot.1)
+```
+
+```{r}
+Figure_4_plot_1 <- ggplot(Fig.4_plot.1, aes(x=treatment,y=live_BS))
+Figure_4_plot_1 + geom_violin()
+```
 
 
 
@@ -96,4 +108,10 @@ summary(Figure_5)
 plot(Figure_5)
 ```
 
+Now I am going to try and create this plot through using ggplot.
+
+```{r}
+plot_5 <- ggplot(Figure_5, aes(x="brine shrimp egg ingestion (mm^3)",y="Microplastic Ingestion (mm^3)"))
+plot_5 + geom_jitter() + theme_classic()
+```
 
