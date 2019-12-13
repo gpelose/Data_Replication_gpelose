@@ -22,6 +22,7 @@ library(readxl)
 library(readxl)
 library(ggplot2)
 library(dplyr)
+library(gridExtra)
 ```
 
 
@@ -85,19 +86,49 @@ I wanted to try and create this graph using the graphing system portrayed by R a
 
 ```{r}
 Fig.4_plot.1 <- read_excel("individual_project.xlsx", 
-    sheet = "GP-Fig.4")
+    sheet = "GP-Fig.4-Cope")
 summary(Fig.4_plot.1)
 ```
 
 ```{r}
 Figure_4_plot_1 <- ggplot(Fig.4_plot.1, aes(x=treatment,y=live_BS))
-Figure_4_plot_1 + geom_violin()
+Figure_4_plot_1 + geom_violin()+theme_classic()
 ```
 
 
+##Plot 2 from figure 4
+
+```{r}
+Fig.4_plot.2 <- read_excel("individual_project.xlsx", 
+    sheet = "GP-Fig.4-Brine")
+summary(Fig.4_plot.2)
+```
 
 
+```{r}
+Figure_4_plot_2 <- ggplot(Fig.4_plot.2, aes(x=treatment,y=brine))
+Figure_4_plot_2 + geom_violin()+theme_classic()
+```
 
+##Plot 3 from figure 4
+
+```{r}
+Fig.4_plot.3 <- read_excel("individual_project.xlsx", 
+    sheet = "GP-Fig.4-Egg")
+summary(Fig.4_plot.3)
+```
+
+
+```{r}
+Figure_4_plot_3 <- ggplot(Fig.4_plot.3, aes(x=treatment,y=eggs))
+Figure_4_plot_3 + geom_violin()+theme_classic()
+```
+
+
+adding all three of these figures together!
+```{r}
+grid.arrange()
+```
 
 #Figure 5
 
@@ -108,7 +139,7 @@ summary(Figure_5)
 plot(Figure_5)
 ```
 
-Now I am going to try and create this plot through using ggplot.
+##Now I am going to try and create this plot through using ggplot.
 
 ```{r}
 plot_5 <- ggplot(Figure_5, aes(x="brine shrimp egg ingestion (mm^3)",y="Microplastic Ingestion (mm^3)"))
