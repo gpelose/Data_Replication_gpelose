@@ -2,7 +2,10 @@
 title: "Data_Replication_gpelose_Workbook1"
 author: "Greg Pelose"
 date: "12/6/2019"
-output: html_document
+output: html_document:
+  toc: true
+    theme: united
+      
 ---
 
 ```{r setup, include=FALSE}
@@ -91,8 +94,9 @@ summary(Fig.4_plot.1)
 ```
 
 ```{r}
-Figure_4_plot_1 <- ggplot(Fig.4_plot.1, aes(x=treatment,y=live_BS))
-Figure_4_plot_1 + geom_violin()+theme_classic()
+Figure_4_plot_1 <- ggplot(Fig.4_plot.1, aes(x=treatment,y=copepods))
+copepods <- Figure_4_plot_1 + geom_violin()+theme_classic()
+copepods
 ```
 
 
@@ -107,7 +111,8 @@ summary(Fig.4_plot.2)
 
 ```{r}
 Figure_4_plot_2 <- ggplot(Fig.4_plot.2, aes(x=treatment,y=brine))
-Figure_4_plot_2 + geom_violin()+theme_classic()
+brine <- Figure_4_plot_2 + geom_violin()+theme_classic()
+brine
 ```
 
 ##Plot 3 from figure 4
@@ -121,13 +126,13 @@ summary(Fig.4_plot.3)
 
 ```{r}
 Figure_4_plot_3 <- ggplot(Fig.4_plot.3, aes(x=treatment,y=eggs))
-Figure_4_plot_3 + geom_violin()+theme_classic()
+eggs <- Figure_4_plot_3 + geom_violin()+theme_classic()
+eggs
 ```
 
-
-adding all three of these figures together!
+##adding all three of these figures together!
 ```{r}
-grid.arrange()
+grid.arrange(copepods, brine, eggs)
 ```
 
 #Figure 5
