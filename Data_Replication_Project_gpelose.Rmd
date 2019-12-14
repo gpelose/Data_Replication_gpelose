@@ -27,6 +27,7 @@ knitr::opts_chunk$set(
 ***
 Astraniga pocualta is a faculatively symbiotic coral species that is Native to New England. Its capabilities to live with or without zoozanthaellie is that makes this organism faculatively symbiotic and thus a model organism for studying coral bleaching. 
 </br>
+
 This study focuses on looking at how microplastics are affecting Astrangia poculata. 
 
 ![Astrania Poculata eating Microplastic beads and Brine Shrimp eggs](img/coral:beads.png)
@@ -37,9 +38,8 @@ Colonies of wild Astrangia poculata were collected and decalcified, they were th
 
 ![Decalcified polyp of Astraniga Poculata](img/decal.png)
 
-Following this, Rotjan et al. wanted to see how feeding microsplastics to colonies of Astrangia poculata will affect the amount of copepods, brine shrimp, and brine shrimp eggs that they would eat 15 minutes later. They ran t-tests, a permuation tests, and a paired permutation test to see if there was any significance between these experiments.   
+Following this, Rotjan et al. wanted to see how feeding microsplastics to colonies of Astrangia poculata will affect the amount of copepods, brine shrimp, and brine shrimp eggs that they would eat 15 minutes after. They ran t-tests, a permuation tests, and a paired permutation test to see if there was any significance between these experiments.   
   
-
 ##Getting data from excel into R
 ***
 These are the packages that you will need to run my replication assignment.
@@ -77,7 +77,7 @@ ggplot(data=Figure_1,aes(x=MP_type,y=MP_count))+geom_boxplot()+xlab("Plastic Typ
 Figure_2 <- read_excel("individual_project.xlsx", 
     sheet = "GP-Fig.2")
 summary(Figure_2)
-names(Figure_2)
+head(Figure_2)
 ```
 
 ##Using ggplot to create Figure 2
@@ -87,23 +87,20 @@ plot_2 <- ggplot(Figure_2, aes(x=colony,y=MP_ingested))
 plot_2 + geom_histogram(stat="identity",aes(fill=location))+annotate("text", x = 1, y = 100, label = "57.5%")+annotate("text", x = 2, y = 135, label = "74.7%")+annotate("text", x = 3, y = 19, label = "88.6%")+scale_y_continuous(lim=c(0,250),breaks=c(0,50,100,150,200,250))
 ```
 
-I was unable to move the legend to the top, I would do this in photo shop if I had access to the application.  
-
-I could change the colors to be black and white like they were in the graph but I actually downloaded the paper and the graphs contain colors and I like the colors as well so I am going to keep them!
-
-Question#
-How perfect does this have to be compared to the graph online? I can get rid of the lines in the background and change the color and I did that but I like the color better. 
 
 #Figure 3
 
+##pulling data in from excell
 ```{r, fig.width=4,fig.height=4}
 Figure_3 <- read_excel("individual_project.xlsx", 
      sheet = "GP-Fig.3")
 summary(Figure_3)
-boxplot(Figure_3, ylab="particles consumed (mm^3)")
 ```
-I wanted to try and create this graph using the graphing system portrayed by R and I was able to. 
 
+##Using ggplot to create Figure 3 
+```{r, fig.width=3,fig.height=4}
+ggplot(data=Figure_3,aes(x=intake,y=particles_consumed))+geom_boxplot()+xlab("")+ylab("particles consumed (mm^3)")+scale_y_continuous(lim=c(0,3),breaks=c(0,1,2,3))+theme_classic()+theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
 
 #Figure 4 
 ***
@@ -112,7 +109,7 @@ I wanted to try and create this graph using the graphing system portrayed by R a
 ```{r}
 Fig.4_plot.1 <- read_excel("individual_project.xlsx", 
     sheet = "GP-Fig.4-Cope")
-summary(Fig.4_plot.1)
+head(Fig.4_plot.1)
 ```
 
 ```{r}
@@ -120,6 +117,7 @@ Figure_4_plot_1 <- ggplot(Fig.4_plot.1, aes(x=treatment,y=copepods))
 copepods <- Figure_4_plot_1 + geom_violin()+theme_classic()
 copepods
 ```
+
 ***
 
 ##Plot 2 from figure 4
@@ -127,7 +125,7 @@ copepods
 ```{r}
 Fig.4_plot.2 <- read_excel("individual_project.xlsx", 
     sheet = "GP-Fig.4-Brine")
-summary(Fig.4_plot.2)
+head(Fig.4_plot.2)
 ```
 
 
@@ -153,7 +151,7 @@ eggs
 ```
 ***
 ##Adding all three together
-```{r}
+```{r, fig.width=3,fig.height=8}
 grid.arrange(copepods, brine, eggs)
 ```
 
@@ -166,10 +164,17 @@ summary(Figure_5)
 plot(Figure_5)
 ```
 
-##Now I am going to try and create this plot through using ggplot.
+##Using ggplot to create Figure 5.
 
 ```{r}
 plot_5 <- ggplot(Figure_5, aes(x="brine shrimp egg ingestion (mm^3)",y="Microplastic Ingestion (mm^3)"))
 plot_5 + geom_jitter() + theme_classic()
 ```
 
+
+
+
+
+#Limitations
+* In Figure_2 I was unable to move the legend to the top, I would do this in photo shop if I had access to the application.
+* 
