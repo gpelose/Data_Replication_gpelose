@@ -33,11 +33,18 @@ This study focuses on looking at how microplastics are affecting Astrangia pocul
 
 ##Methodology 
 
+Colonies of wild Astrangia poculata were collected and decalcified, they were then opened up to allow for the gastrocavity to be analyzed. They counted the amount of microplastics that they found represented by Figure 1 below. They also divided the colonies into top, middle and bottom to see which portions of the coral had the greatest amount of microplastics shown by Figure 2 below. 
+
+![Decalcified polyp of Astraniga Poculata](img/decal.png)
+
+Following this, Rotjan et al. wanted to see how feeding microsplastics to colonies of Astrangia poculata will affect the amount of copepods, brine shrimp, and brine shrimp eggs that they would eat 15 minutes later. They ran t-tests, a permuation tests, and a paired permutation test to see if there was any significance between these experiments.   
   
 
 ##Getting data from excel into R
-
-```{r}
+***
+These are the packages that you will need to run my replication assignment.
+I used the function called readxl to pull my dad in from the excell file that I have been working from. 
+```{r, results='hide'}
 library(knitr)
 library(readxl)
 library(readxl)
@@ -46,7 +53,6 @@ library(dplyr)
 library(gridExtra)
 ```
 
-
 #Figure 1
 
 ##To start, you need to pull in the data from R, 
@@ -54,7 +60,7 @@ library(gridExtra)
 ```{r}
 Figure_1 <- read_excel("individual_project.xlsx", 
     sheet = "GP-Fig.1")
-summary(Figure_1)
+head(Figure_1)
 ```
 
 ##Creating a plot in ggplot
@@ -62,9 +68,6 @@ summary(Figure_1)
 ```{r,fig.width=4,fig.height=4}
 ggplot(data=Figure_1,aes(x=MP_type,y=MP_count))+geom_boxplot()+xlab("Plastic Type")+ylab("no. plastics per polyp")+scale_y_continuous(lim=c(0,100),breaks=c(0,20,40,60,80,100))+theme_classic()+annotate("text", x = "Beads", y = 30, label = "A")+annotate("text", x = "Fibers", y = 92, label = "B")+annotate("text", x = "Misc", y = 22, label = "A")+theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
-
-##Statistical Analysis
-
 
 
 #Figure 2
@@ -78,7 +81,6 @@ names(Figure_2)
 ```
 
 ##Using ggplot to create Figure 2
-
 
 ```{r, fig.width=4,fig.height=4}
 plot_2 <- ggplot(Figure_2, aes(x=colony,y=MP_ingested))
@@ -103,7 +105,9 @@ boxplot(Figure_3, ylab="particles consumed (mm^3)")
 I wanted to try and create this graph using the graphing system portrayed by R and I was able to. 
 
 
-#Figure 4 Plot 1!
+#Figure 4 
+***
+##Plot 1!
 
 ```{r}
 Fig.4_plot.1 <- read_excel("individual_project.xlsx", 
@@ -116,7 +120,7 @@ Figure_4_plot_1 <- ggplot(Fig.4_plot.1, aes(x=treatment,y=copepods))
 copepods <- Figure_4_plot_1 + geom_violin()+theme_classic()
 copepods
 ```
-
+***
 
 ##Plot 2 from figure 4
 
@@ -132,7 +136,7 @@ Figure_4_plot_2 <- ggplot(Fig.4_plot.2, aes(x=treatment,y=brine))
 brine <- Figure_4_plot_2 + geom_violin()+theme_classic()
 brine
 ```
-
+***
 ##Plot 3 from figure 4
 
 ```{r}
@@ -147,8 +151,8 @@ Figure_4_plot_3 <- ggplot(Fig.4_plot.3, aes(x=treatment,y=eggs))
 eggs <- Figure_4_plot_3 + geom_violin()+theme_classic()
 eggs
 ```
-
-##adding all three of these figures together!
+***
+##Adding all three together
 ```{r}
 grid.arrange(copepods, brine, eggs)
 ```
