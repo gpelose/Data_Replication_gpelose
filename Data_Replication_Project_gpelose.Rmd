@@ -176,6 +176,18 @@ eggs
 grid.arrange(copepods, brine, eggs)
 ```
 
+#Statistical Analysis
+
+#t-test between plot 1 and 2 of figure 4.
+
+```{r}
+x <- qqnorm(Fig.4_plot.1$copepods)
+x
+```
+
+
+
+
 ***
 
 #Figure 5
@@ -202,4 +214,4 @@ plot_5 + geom_jitter() + theme_classic()
 
 #Limitations
 * In Figure_2 I was unable to move the legend to the top, I would do this in photo shop if I had access to the application.
-* 
+* I ran my violin plots with the data that I was given and found that my results were not as amplified as the ones shown in the paper. 
