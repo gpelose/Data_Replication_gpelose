@@ -44,7 +44,7 @@ Following this, Rotjan et al. wanted to see how feeding microsplastics to coloni
 ***
 These are the packages that you will need to run my replication assignment.
 I used the function called readxl to pull my dad in from the excell file that I have been working from. 
-```{r, results='hide'}
+```{r, results='hide', error=FALSE, warning=FALSE, message=FALSE}
 library(knitr)
 library(readxl)
 library(readxl)
@@ -54,8 +54,8 @@ library(gridExtra)
 ```
 
 #Figure 1
-
-##To start, you need to pull in the data from R, 
+***
+##To start, you need to pull in the data from R. 
 
 ```{r}
 Figure_1 <- read_excel("individual_project.xlsx", 
@@ -71,30 +71,29 @@ ggplot(data=Figure_1,aes(x=MP_type,y=MP_count))+geom_boxplot()+xlab("Plastic Typ
 
 
 #Figure 2
-
-##Pulling data in from excell 
+***
+##Pulling data in from Excel 
 ```{r}
 Figure_2 <- read_excel("individual_project.xlsx", 
     sheet = "GP-Fig.2")
-summary(Figure_2)
 head(Figure_2)
 ```
 
 ##Using ggplot to create Figure 2
 
-```{r, fig.width=4,fig.height=4}
+```{r, fig.width=5,fig.height=4}
 plot_2 <- ggplot(Figure_2, aes(x=colony,y=MP_ingested))
 plot_2 + geom_histogram(stat="identity",aes(fill=location))+annotate("text", x = 1, y = 100, label = "57.5%")+annotate("text", x = 2, y = 135, label = "74.7%")+annotate("text", x = 3, y = 19, label = "88.6%")+scale_y_continuous(lim=c(0,250),breaks=c(0,50,100,150,200,250))
 ```
 
 
 #Figure 3
-
-##pulling data in from excell
-```{r, fig.width=4,fig.height=4}
+***
+##pulling data in from excel
+```{r}
 Figure_3 <- read_excel("individual_project.xlsx", 
      sheet = "GP-Fig.3")
-summary(Figure_3)
+head(Figure_3)
 ```
 
 ##Using ggplot to create Figure 3 
