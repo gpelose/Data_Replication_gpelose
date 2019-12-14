@@ -4,9 +4,9 @@ author: "Greg Pelose"
 date: "12/6/2019"
 output: 
   html_document:
-  toc: true
-    theme: united
-      
+    theme: cosmo
+    toc: true
+    toc_float: true
 ---
 
 ```{r setup, include=FALSE}
@@ -17,17 +17,26 @@ knitr::opts_chunk$set(
 	prompt = FALSE,
 	tidy = TRUE,
 	tidy.opts = list(width.cutoff = 75),
-	fig.path = "img/")
+	fig.path = "img/"
+)
 ```
+***
+
 #Introduction
 
-##Backgroung Informaiton
+***
+Astraniga pocualta is a faculatively symbiotic coral species that is Native to New England. Its capabilities to live with or without zoozanthaellie is that makes this organism faculatively symbiotic and thus a model organism for studying coral bleaching. 
+</br>
+This study focuses on looking at how microplastics are affecting Astrangia poculata. 
+
+![Astrania Poculata eating Microplastic beads and Brine Shrimp eggs](img/coral:beads.png)
+
+##Methodology 
+
   
 
 ##Getting data from excel into R
-```{r}
-install.packages("readxl")
-```
+
 ```{r}
 library(knitr)
 library(readxl)
