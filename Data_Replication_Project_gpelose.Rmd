@@ -2,14 +2,22 @@
 title: "Data_Replication_gpelose_Workbook1"
 author: "Greg Pelose"
 date: "12/6/2019"
-output: html_document:
+output: 
+  html_document:
   toc: true
     theme: united
       
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(
+	echo = TRUE,
+	warning = FALSE,
+	comment = "##",
+	prompt = FALSE,
+	tidy = TRUE,
+	tidy.opts = list(width.cutoff = 75),
+	fig.path = "img/")
 ```
 #Introduction
 
@@ -21,6 +29,7 @@ knitr::opts_chunk$set(echo = TRUE)
 install.packages("readxl")
 ```
 ```{r}
+library(knitr)
 library(readxl)
 library(readxl)
 library(ggplot2)
