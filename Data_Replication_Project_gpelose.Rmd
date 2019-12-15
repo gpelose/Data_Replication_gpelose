@@ -193,7 +193,14 @@ shapiro.test(Fig.4_plot.1$copepods)
 
 From this output we can say that the data is normal, but the sample size is very small and is actually less than 30 I do not think that they can have the full confidence to say that this data is normal. 
 
-QUESTION# should I be using a gossets distribution?
+```{r}
+tt <- t.test(copepods~treatment,data=Fig.4_plot.1,var.equal=TRUE)
+tt
+```
+
+I ran a t-test and recieved the same p-value of .03 as Rotjan et al. 
+
+
 
 ##statistical analysis from plot 2 figure 4
 
@@ -226,7 +233,7 @@ ggqqplot(Fig.4_plot.3$eggs)
 ```
 This data is also not normal as we see an outlier in the visual test and we also see that the p-value is less than .05. I also am concerned that we have such a small sample size as well. Either way the paper states that when the data did not show normality from a shapiro wilks test they used a paired permutation test. 
 
-(Fig.4_plot.3, aes(x=treatment,y=eggs))
+
 ```{r}
 perm.paired.loc(Fig.4_plot.3$treatment, Fig.4_plot.3$eggs, mean, variable = NULL,
                 alternative = c("two.sided", "less", "greater"),
@@ -269,4 +276,6 @@ I was able
 * In Figure_2 I was unable to move the legend to the top, I would do this in photo shop if I had access to the application.
 * I ran my violin plots with the data that I was given and found that my results were not as amplified as the ones shown in the paper. 
 * Since the sample size is smaller than 30 should I be using 
+* how do I get my excell file onto github so that others can use it!
+* QUESTION# should I be using a gossets distribution?
 
