@@ -55,6 +55,9 @@ library(readxl)
 library(ggplot2)
 library(dplyr)
 library(gridExtra)
+library(dplyr)
+library(ggpubr)
+library(wPerm)
 ```
 
 ***
@@ -178,15 +181,57 @@ grid.arrange(copepods, brine, eggs)
 
 #Statistical Analysis
 
-#t-test between plot 1 and 2 of figure 4.
+## Normality tests between plot 1 figure 4.
 
 ```{r}
-x <- qqnorm(Fig.4_plot.1$copepods)
-x
+ggqqplot(Fig.4_plot.1$copepods)
 ```
 
+```{r}
+shapiro.test(Fig.4_plot.1$copepods)
+```
 
+From this output we can say that the data is normal, but the sample size is very small and is actually less than 30 I do not think that they can have the full confidence to say that this data is normal. 
 
+QUESTION# should I be using a gossets distribution?
+
+##statistical analysis from plot 2 figure 4
+
+```{r}
+shapiro.test(Fig.4_plot.2$brine)
+```
+
+I got that the p-value is not normal due to a p-vlaue less that .05. In the paper they stated that they ran paired permutaton test when the data was not normal. 
+
+```{r}
+ggqqplot(Fig.4_plot.2$brine)
+```
+
+This data also does not pass the visual test as there is one oulier on the top. 
+
+```{r}
+perm.paired.loc(x, y, parameter, variable = NULL,
+                alternative = c("two.sided", "less", "greater"),
+                R = 9999)
+```
+
+##Statistical Analysis from plot 3 figure 4
+
+```{r}
+shapiro.test(Fig.4_plot.3$eggs)
+```
+
+```{r}
+ggqqplot(Fig.4_plot.3$eggs)
+```
+This data is also not normal as we see an outlier in the visual test and we also see that the p-value is less than .05. I also am concerned that we have such a small sample size as well. Either way the paper states that when the data did not show normality from a shapiro wilks test they used a paired permutation test. 
+
+(Fig.4_plot.3, aes(x=treatment,y=eggs))
+```{r}
+perm.paired.loc(Fig.4_plot.3$treatment, Fig.4_plot.3$eggs, mean, variable = NULL,
+                alternative = c("two.sided", "less", "greater"),
+                R = 9999)
+```
 
 ***
 
@@ -208,10 +253,20 @@ plot_5 <- ggplot(Figure_5, aes(x="brine shrimp egg ingestion (mm^3)",y="Micropla
 plot_5 + geom_jitter() + theme_classic()
 ```
 
+***
 
+#Discussion/Results
+
+I found that I was able to create most of the graphical figures with a few minor differences. I found that at the end of the 
+
+***
+
+I was able 
 
 
 
 #Limitations
 * In Figure_2 I was unable to move the legend to the top, I would do this in photo shop if I had access to the application.
 * I ran my violin plots with the data that I was given and found that my results were not as amplified as the ones shown in the paper. 
+* Since the sample size is smaller than 30 should I be using 
+
