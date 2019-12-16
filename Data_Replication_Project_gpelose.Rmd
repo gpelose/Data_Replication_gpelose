@@ -58,6 +58,7 @@ library(gridExtra)
 library(dplyr)
 library(ggpubr)
 library(wPerm)
+library(lmPerm)
 ```
 
 ***
@@ -217,9 +218,16 @@ ggqqplot(Fig.4_plot.2$brine)
 This data also does not pass the visual test as there is one oulier on the top. 
 
 ```{r}
-perm.paired.loc(x, y, parameter, variable = NULL,
-                alternative = c("two.sided", "less", "greater"),
-                R = 9999)
+tt2 <- t.test(brine~treatment,data=Fig.4_plot.2,var.equal=TRUE)
+tt2
+```
+
+I got the same value for my t-test as they did in the paper of .6, this shows to not be significant as the paper also said but I do not think that it is okay to run a ttest with non-normal data. so here is my attempt at a permutation test below. 
+
+```{r}
+
+p2 <- aovp(brine ~ treatment, data=Fig.4_plot.2)
+summary(p2)
 ```
 
 ##Statistical Analysis from plot 3 figure 4
@@ -233,12 +241,11 @@ ggqqplot(Fig.4_plot.3$eggs)
 ```
 This data is also not normal as we see an outlier in the visual test and we also see that the p-value is less than .05. I also am concerned that we have such a small sample size as well. Either way the paper states that when the data did not show normality from a shapiro wilks test they used a paired permutation test. 
 
-
 ```{r}
-perm.paired.loc(Fig.4_plot.3$treatment, Fig.4_plot.3$eggs, mean, variable = NULL,
-                alternative = c("two.sided", "less", "greater"),
-                R = 9999)
+p3 <- aovp(eggs ~ treatment, data=Fig.4_plot.3)
+summary(p3)
 ```
+
 
 ***
 
@@ -259,6 +266,17 @@ plot(Figure_5)
 plot_5 <- ggplot(Figure_5, aes(x="brine shrimp egg ingestion (mm^3)",y="Microplastic Ingestion (mm^3)"))
 plot_5 + geom_jitter() + theme_classic()
 ```
+
+#Statistics for figure 5
+
+I ran the same permutation test that they ran and got the same results as they did. I know that we were only supposed to run one analysis of statistics but I wanted to try and run a paired permutation test and I think that it worked.
+
+```{r}
+perm.paired.loc(Figure_5$microplastic_ingestion, Figure_5$bse_ingestion, mean, variable = NULL,
+                alternative = c("two.sided", "less", "greater"),
+                R = 9999)
+```
+
 
 ***
 
