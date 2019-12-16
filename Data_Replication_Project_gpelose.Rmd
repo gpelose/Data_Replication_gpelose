@@ -81,6 +81,9 @@ head(Figure_1)
 ggplot(data=Figure_1,aes(x=MP_type,y=MP_count))+geom_boxplot()+xlab("Plastic Type")+ylab("no. plastics per polyp")+scale_y_continuous(lim=c(0,100),breaks=c(0,20,40,60,80,100))+theme_classic()+annotate("text", x = "Beads", y = 30, label = "A")+annotate("text", x = "Fibers", y = 92, label = "B")+annotate("text", x = "Misc", y = 22, label = "A")+theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
+![Real figure 1 from paper](img/real_fig.1.png)
+
+
 ***
 
 #Figure 2
@@ -101,6 +104,8 @@ plot_2 <- ggplot(Figure_2, aes(x=colony,y=MP_ingested))
 plot_2 + geom_histogram(stat="identity",aes(fill=location))+annotate("text", x = 1, y = 100, label = "57.5%")+annotate("text", x = 2, y = 135, label = "74.7%")+annotate("text", x = 3, y = 19, label = "88.6%")+scale_y_continuous(lim=c(0,250),breaks=c(0,50,100,150,200,250))
 ```
 
+![Real figure 2 from paper](img/real_fig.2.png)
+
 ***
 
 #Figure 3
@@ -118,6 +123,9 @@ head(Figure_3)
 ```{r, fig.width=3,fig.height=4}
 ggplot(data=Figure_3,aes(x=intake,y=particles_consumed))+geom_boxplot()+xlab("")+ylab("particles consumed (mm^3)")+scale_y_continuous(lim=c(0,3),breaks=c(0,1,2,3))+theme_classic()+theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
+
+![Real figure 3 from paper](img/real_fig.3.png)
+
 
 ***
 
@@ -180,6 +188,9 @@ eggs
 grid.arrange(copepods, brine, eggs)
 ```
 
+![Real figure 4 from paper](img/real_fig.4.png)
+
+
 #Statistical Analysis
 
 ## Normality tests between plot 1 figure 4.
@@ -239,6 +250,7 @@ shapiro.test(Fig.4_plot.3$eggs)
 ```{r}
 ggqqplot(Fig.4_plot.3$eggs)
 ```
+
 This data is also not normal as we see an outlier in the visual test and we also see that the p-value is less than .05. I also am concerned that we have such a small sample size as well. Either way the paper states that when the data did not show normality from a shapiro wilks test they used a paired permutation test. 
 
 ```{r}
@@ -257,15 +269,16 @@ summary(p3)
 Figure_5 <- read_excel("individual_project.xlsx", 
     sheet = "GP-Fig.5")
 summary(Figure_5)
-plot(Figure_5)
 ```
 
 ##Using ggplot to create Figure 5.
 
 ```{r}
-plot_5 <- ggplot(Figure_5, aes(x="brine shrimp egg ingestion (mm^3)",y="Microplastic Ingestion (mm^3)"))
-plot_5 + geom_jitter() + theme_classic()
+plot_5 <- ggplot(Figure_5, aes(x=microplastic_ingestion,y=bse_ingestion))+xlab("brine shrimp egg ingestion (mm^3)")+ylab("Microplastic Ingestion (mm^3)")
+plot_5 + geom_point() + theme_classic()
 ```
+
+![Real figure 5 from paper](img/real_fig.5.png)
 
 #Statistics for figure 5
 
@@ -284,6 +297,8 @@ perm.paired.loc(Figure_5$microplastic_ingestion, Figure_5$bse_ingestion, mean, v
 
 I found that I was able to create most of the graphical figures with a few minor differences. I found that at the end of the 
 
+do things look different and change the results 
+
 ***
 
 I was able 
@@ -293,7 +308,9 @@ I was able
 #Limitations
 * In Figure_2 I was unable to move the legend to the top, I would do this in photo shop if I had access to the application.
 * I ran my violin plots with the data that I was given and found that my results were not as amplified as the ones shown in the paper. 
-* Since the sample size is smaller than 30 should I be using 
-* how do I get my excell file onto github so that others can use it!
+* Since the sample size is smaller than 30 should I be using gossets distribution 
+* how do I get my excell file and pdf onto github so that others can use it!
 * QUESTION# should I be using a gossets distribution?
+* need to add photos of the graphs from paper 
+
 
